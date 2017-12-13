@@ -6,10 +6,12 @@ import App from './App'
 Vue.config.productionTip = false
 import './bootstrap'
 /* eslint-disable no-new */
-// new Vue({
-//   el: '#app',
-//   template: '<App/>',
-//   components: { App }
-// })
+new Vue({
+  el: '#app',
+  template: '<App/>',
+  components: { App }
+})
 
-new Vue(App).$mount('#app')
+//new Vue(App).$mount('#app')
+
+//export default { name: 'app' }
