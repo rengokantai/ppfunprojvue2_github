@@ -1,8 +1,69 @@
 <div>
-  Repo page
-  <br/>
-  <router-link :to="{name:'user'}">
+  <md-table>
+     <md-table-header>
+    <md-table-row>
+      <md-table-head>
+name
+      </md-table-head>
+      <md-table-head>
+description
+      </md-table-head>
+      <md-table-head>
+number of stats
+      </md-table-head>
+      <md-table-head>
+      number of forks
+      </md-table-head>
+      <md-table-head>
+number of open
+      </md-table-head>
+            <md-table-head>
+lang
+      </md-table-head>
+            <md-table-head>
+size
+      </md-table-head>
+    </md-table-row>
+     
+     </md-table-header>
+     <md-table-body>
+     <md-table-row v-for="repository in $root.repositories">
 
-  </router-link>
+      <md-table-cell>
+name
+      </md-table-cell>
+      <md-table-cell>
+description
+      </md-table-cell>
+      <md-table-cell>
+number of stats
+      </md-table-cell>
+      <md-table-cell>
+      number of forks
+      </md-table-cell>
+      <md-table-cell>
+number of open
+      </md-table-cell>
+            <md-table-cell>
+lang
+      </md-table-cell>
+            <md-table-cell>
+size
+      </md-table-cell>
 
+
+
+
+
+
+
+
+
+
+     </md-table-row>
+     </md-table-body>
+  </md-table>
+  qewrwr
 </div>
+
+

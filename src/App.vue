@@ -12,7 +12,7 @@
       </md-input-container>
     </md-toolbar>
 
-    <md-sidebar class="md-left" ref="sidenav"> 
+   <!-- <md-sidebar class="md-left" ref="sidenav"> 
       <md-toolbar class="md-medium">
         <md-button class="md-icon-button" @click.native="toggleSidenav">
           <md-icon>menu</md-icon>
@@ -27,7 +27,7 @@
         <router-link :to="{name: 'user'}">user</router-link>
       </md-list-item>
       </md-list>
-    </md-sidebar>
+    </md-sidebar> -->
     <div class="main-content">
     <md-layout>
     <router-view></router-view>
@@ -81,7 +81,7 @@ export default {
     },500)
   },
  mounted() {
-   this.fetchUser('rengokantai')
+  // this.fetchUser('rengokantai')
  }
 }
 </script>
