@@ -8,18 +8,26 @@
       </md-button>
       <h2 class="md-title">github</h2>
       <md-input-container style="flex:1">
-        <md-input placeholder="search"></md-input>
+        <md-input placeholder="search" v-model="username"></md-input>
       </md-input-container>
     </md-toolbar>
 
-    <md-sidenav class="md-left">
+    <md-sidebar class="md-left" ref="sidenav"> 
       <md-toolbar class="md-medium">
-        <md-button class="md-icon-button">
+        <md-button class="md-icon-button" @click.native="toggleSidenav">
           <md-icon>menu</md-icon>
         </md-button>
          <h2 class="md-title">github</h2>
       </md-toolbar>
-    </md-sidenav>
+      <md-list>
+      <md-list-item>
+        <router-link :to="{name: 'repositories'}">repos</router-link>
+      </md-list-item>
+      <md-list-item>
+        <router-link :to="{name: 'user'}">user</router-link>
+      </md-list-item>
+      </md-list>
+    </md-sidebar>
     <div class="main-content">
     <md-layout>
     <router-view></router-view>
@@ -30,21 +38,47 @@
 
 <script>
 import {router} from './bootstrap'
+import _ from 'lodash'
 
 export default {
   name: 'github',
   router,
   data(){
     return{
-      user:null
+      user:null,
+      username:null,
+      repositories:[]
+    }
+  },
+  watch:{
+    username(value){
+      this.setUsername(value)
     }
   },
   methods:{
     fetchUser(username){
-      this.$http.get(`https://api.github.com/users/${username}`).then((res)=>{
-        //this.user = res.data
+      this.$http.get(`https://api.github.com/users/${username}`).then(({data})=>{
+        this.user = data
       })
-    }
+    },
+    fetchRepositories(username){
+      this.$http.get(`https://api.github.com/repos/${username}/repos`).then(({data})=>{
+        this.repositories = data
+      })
+    },
+    toggleSidenav(){
+      this.$refs.sidenav.toggle();
+    },
+    setUsername: _.debounce(function(username){
+      if(username){
+      this.fetchUser(username)
+      this.fetchRepositories(username)
+      }
+      if(!username){
+        this.user=null
+        this.repositories=[];
+      }
+    },500)
   },
  mounted() {
    this.fetchUser('rengokantai')
