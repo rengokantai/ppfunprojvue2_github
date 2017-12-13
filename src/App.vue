@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld'
+import {router} from './bootstrap'
 
 export default {
-  name: 'github'
+  name: 'github',
+  router,
  
 }
 </script>
